@@ -6,7 +6,7 @@
                 <a href="#" @click.prevent="selectOption(option)">{{option.name}}</a>
             </li>
         </ul>
-        <input class="select-block__input" type="hidden" value="Россия">
+        <input class="select-block__input" type="hidden" v-model="val">
     </div>
 </template>
 
@@ -15,7 +15,8 @@
         name: "AppSelect",
         data() {
           return{
-              areOptionsVisible: false
+              areOptionsVisible: false,
+              val: this.selected
           }
         },
         props: {
@@ -35,6 +36,7 @@
         methods: {
             selectOption(option){
                 this.$emit('select', option);
+                this.val = option.name
             },
             hideSelect(){
                 this.areOptionsVisible = false;
